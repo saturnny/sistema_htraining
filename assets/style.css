@@ -1,0 +1,42 @@
+:root{
+  --bg:#0a0a0a;
+  --panel:#121212;
+  --panel-2:#181818;
+  --nav:#101010;
+  --muted:#e0e6ee;
+  --text:#ffffff;
+  --accent:#4c8bf5;
+  --accent-2:#7aa7ff;
+}
+*{box-sizing:border-box}
+body{font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+.bg-body{background:var(--bg)!important;color:var(--text)}
+.bg-nav{background:var(--nav)!important}
+.text-white{color:#fff!important}
+.text-contrast{color:var(--muted)!important}
+.logo{height:56px}
+.card-dark{background:var(--panel);border:1px solid #1f1f1f;border-radius:12px;color:#fff}
+.table-section{background:var(--panel-2);color:#fff}
+.table-dark{--bs-table-color:#fff;--bs-table-striped-color:#fff;--bs-table-hover-color:#fff;--bs-table-bg:transparent;--bs-table-striped-bg:#121212;--bs-table-hover-bg:#1b1b1b}
+.form-control,.form-select{background:#0e0e0e;color:#fff;border:1px solid #2a2a2a}
+.form-control::placeholder{color:#cfd6df}
+.form-control:focus,.form-select:focus{background:#0e0e0e;color:#fff;border-color:var(--accent);box-shadow:0 0 0 .2rem rgba(76,139,245,.15)}
+.btn-primary{background:var(--accent);border-color:var(--accent)}
+.btn-primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+.badge-status{text-transform:capitalize}
+
+/* Força legibilidade em labels e elementos do formulário */
+label, .form-label { color:#fff !important; }
+.form-control, .form-select { background:#0e0e0e !important; color:#fff !important; border:1px solid #2a2a2a !important; }
+.form-control:focus, .form-select:focus { background:#0e0e0e !important; color:#fff !important; border-color: var(--accent) !important; box-shadow: 0 0 0 .2rem rgba(76,139,245,.15) !important; }
+.modal-content.bg-modal { background: var(--panel) !important; color:#fff !important; }
+.table thead th { color:#fff !important; }
+select.form-select option { background:#0e0e0e; color:#fff; }
+
+/* Extra: força cor de texto nos selects mesmo em Windows/Edge */
+select.form-select, select.form-select:focus { color:#fff !important; background-color:#0e0e0e !important; }
+
+/* Garantir legibilidade também na tela pública */
+.card-dark .form-label { color:#fff !important; }
+.card-dark .form-control, .card-dark .form-select { background:#0e0e0e !important; color:#fff !important; }
+.card-dark .form-control:focus, .card-dark .form-select:focus { background:#0e0e0e !important; color:#fff !important; }
