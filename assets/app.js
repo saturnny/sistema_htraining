@@ -54,12 +54,20 @@
         .from(TABLE_PARTICIPANTS)
         .insert({
           name:p.name, email:p.email, phone:p.phone,
+<<<<<<< HEAD
           ticket_type:p.ticket_type, lot_id:p.lot_id || null, status:p.status || 'pendente'
+=======
+          ticket_type:'Inteira', lot_id:p.lot_id || null, status:p.status || 'pendente'
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
         })
         .select().single();
       if (error) throw new Error(explain(error, 'DB')); return data;
     },
     async upsertParticipant(p) {
+<<<<<<< HEAD
+=======
+      if(!p.ticket_type) p.ticket_type = 'Inteira'; // segurança por causa do NOT NULL
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
       const { data, error } = await supabaseClient.from(TABLE_PARTICIPANTS).upsert(p).select().maybeSingle();
       if (error) throw new Error(explain(error, 'DB')); return data;
     },
@@ -80,6 +88,7 @@
     return `<span class="badge rounded-pill ${ok ? 'text-bg-success' : 'text-bg-secondary'} badge-status">${s || 'pendente'}</span>`;
   };
 
+<<<<<<< HEAD
   // ======= Public Registration =======
   async function initRegistrationPage() {
     const form = document.getElementById('registration-form');
@@ -92,23 +101,65 @@
     ['Inteira','Meia'].forEach(t=>{
       const op=document.createElement('option'); op.value=t; op.textContent=t; ticketSelect.appendChild(op);
     });
+=======
+  // ======= Public Registration (no ticket select) =======
+  async function initRegistrationPage() {
+    const form = document.getElementById('registration-form');
+    if (!form) return;
+
+    const lotSelect   = document.getElementById('lot-select');
+    const success     = document.getElementById('success-message');
+    const paymentBtn  = document.getElementById('payment-button');
+    const submitBtn   = form.querySelector('button[type="submit"]');
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
 
     try {
       const lots = await db.listOpenLots();
       lotSelect.innerHTML = '';
+<<<<<<< HEAD
       lots.forEach(l=>{
         const op=document.createElement('option'); op.value=l.id; op.textContent=`${l.name} — ${money(l.price)}`; lotSelect.appendChild(op);
       });
     } catch (err) { alert('Erro ao carregar lotes: '+(err?.message||'desconhecido')); }
+=======
+
+      if (!lots.length) {
+        const op = document.createElement('option');
+        op.disabled = true; op.selected = true;
+        op.textContent = 'Nenhum lote disponível';
+        lotSelect.appendChild(op);
+        if (submitBtn) submitBtn.disabled = true;
+      } else {
+        lots.forEach(l=>{
+          const op=document.createElement('option');
+          op.value=l.id;
+          op.textContent=`${l.name} — ${money(l.price)}`;
+          lotSelect.appendChild(op);
+        });
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    } catch (err) {
+      alert('Erro ao carregar lotes: ' + (err?.message || 'desconhecido'));
+      if (submitBtn) submitBtn.disabled = true;
+    }
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
 
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();
       const payload = {
+<<<<<<< HEAD
         name: document.getElementById('name').value.trim(),
         email: document.getElementById('email').value.trim(),
         phone: document.getElementById('phone').value.trim(),
         ticket_type: ticketSelect.value,
         lot_id: Number(lotSelect.value),
+=======
+        name:  document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        lot_id: Number(lotSelect.value),
+        ticket_type: 'Inteira',
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
         status: 'pendente'
       };
       try{
@@ -117,7 +168,11 @@
         success.classList.remove('d-none');
         paymentBtn?.addEventListener('click', ()=> window.location.href='payment.html');
       }catch(err){
+<<<<<<< HEAD
         alert('Erro ao registrar: '+(err?.message||'desconhecido'));
+=======
+        alert('Erro ao registrar: ' + (err?.message || 'desconhecido'));
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
       }
     });
   }
@@ -191,7 +246,10 @@
     document.getElementById('participant-name').value = p?.name || '';
     document.getElementById('participant-email').value = p?.email || '';
     document.getElementById('participant-phone').value = p?.phone || '';
+<<<<<<< HEAD
     document.getElementById('participant-ticket').value = p?.ticket_type || 'Inteira';
+=======
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
     document.getElementById('participant-status').value = p?.status || 'pendente';
     document.getElementById('participant-lot').value = p?.lot_id || '';
     new bootstrap.Modal('#participantModal').show();
@@ -203,8 +261,12 @@
     try { participants = await db.listParticipants(); } catch(err){ alert('Erro ao carregar participantes: '+err.message); return; }
     tbody.innerHTML = participants.map(p=>`
       <tr>
+<<<<<<< HEAD
         <td>${p.id}</td><td>${p.name||''}</td><td>${p.email||''}</td><td>${p.phone||''}</td>
         <td>${p.ticket_type||''}</td><td>${p.lot_id||''}</td><td>${badgeStatus(p.status)}</td>
+=======
+        <td>${p.id}</td><td>${p.name||''}</td><td>${p.email||''}</td><td>${p.phone||''}</td><td>${p.lot_id||''}</td><td>${badgeStatus(p.status)}</td>
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
         <td class="text-end">
           <div class="btn-group btn-group-sm">
             <button class="btn btn-outline-primary" data-action="edit" data-id="${p.id}">Editar</button>
@@ -298,12 +360,24 @@
           name: document.getElementById('participant-name').value.trim(),
           email: document.getElementById('participant-email').value.trim(),
           phone: document.getElementById('participant-phone').value.trim(),
+<<<<<<< HEAD
           ticket_type: document.getElementById('participant-ticket').value,
+=======
+          ticket_type: 'Inteira', // default para satisfazer NOT NULL do schema atual
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
           lot_id: document.getElementById('participant-lot').value || null,
           status: document.getElementById('participant-status').value
         };
         if(id) data.id = Number(id);
+<<<<<<< HEAD
         try{ await db.upsertParticipant(data); bootstrap.Modal.getInstance(document.getElementById('participantModal')).hide(); renderParticipantsTable(); }catch(err){ alert('Erro ao salvar: '+err.message); }
+=======
+        try{
+          await db.upsertParticipant(data);
+          bootstrap.Modal.getInstance(document.getElementById('participantModal')).hide();
+          renderParticipantsTable();
+        }catch(err){ alert('Erro ao salvar: '+err.message); }
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
       });
       renderParticipantsTable();
     }

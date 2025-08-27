@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root{
   --bg:#0a0a0a;
   --panel:#121212;
@@ -40,3 +41,48 @@ select.form-select, select.form-select:focus { color:#fff !important; background
 .card-dark .form-label { color:#fff !important; }
 .card-dark .form-control, .card-dark .form-select { background:#0e0e0e !important; color:#fff !important; }
 .card-dark .form-control:focus, .card-dark .form-select:focus { background:#0e0e0e !important; color:#fff !important; }
+=======
+
+:root{
+  --bg:#0b0b0f;
+  --card:#13131a;
+  --nav:#0f0f15;
+  --muted:#9aa0aa;
+  --text:#ffffff;
+  --primary:#5b8cff;
+  --success:#28a745;
+  --danger:#dc3545;
+  --border:#1f2230;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);}
+.logo{height:44px}
+.bg-body{background:var(--bg)!important}
+.bg-nav{background:var(--nav)!important}
+.card-dark{background:var(--card);border:1px solid var(--border);border-radius:14px;}
+.bg-modal{background:var(--card);border:1px solid var(--border);border-radius:14px;}
+.table-section{background:rgba(255,255,255,.03)}
+.table-dark{--bs-table-bg:transparent;--bs-table-color:var(--text)}
+.text-contrast{color:var(--muted)!important}
+.form-control, .form-select{
+  background: #141826 !important;
+  border:1px solid var(--border) !important;
+  color: var(--text) !important;
+}
+.form-control::placeholder{color:#8b93a7}
+.form-control:focus, .form-select:focus{
+  outline:none; box-shadow:0 0 0 .2rem rgba(91,140,255,.2);
+  border-color: var(--primary) !important;
+}
+.btn-primary{background:var(--primary);border-color:var(--primary)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-outline-light{border-color:#3b3f55;color:#e9edf7}
+.btn-outline-light:hover{background:#2a2f44;color:#fff}
+.navbar-brand{font-weight:600}
+.badge-status{text-transform:capitalize}
+.border-dark{border-color:var(--border)!important}
+small, .small{color:var(--muted)!important}
+.table-responsive{border-radius:14px;overflow:hidden;border:1px solid var(--border)}
+a{color:#8fb1ff}
+>>>>>>> faad88f (fix(admin): remove coluna 'tipo de ingresso' e mantém 'lote' visível)
